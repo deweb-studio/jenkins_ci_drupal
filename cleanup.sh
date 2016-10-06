@@ -30,7 +30,8 @@ for project in $WEBROOT/*/ ; do
         SQL="DROP DATABASE IF EXISTS ${DB_NAME}"
         mysql -u"$CI_DB_USER" -p"$CI_DB_PASS" -e "$SQL"
         echo "$DB_NAME was destroyed."
-        rm -rf $build
+        chmod 777 -R $build
+	      rm -rf $build
         echo "$build folder was deleted"
     done
 done
