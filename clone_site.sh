@@ -50,6 +50,8 @@ fi
 # restore site dump on build
 cd $WEBROOT/$PROJECT_NAME/build-${ISSUE_NUMBER}
 cp ./sites/default/default.settings.php ./sites/default/settings.php
+# create private files directory.
+mkdir -p ./sites/default/files/private
 
 BASE_CODNFIG="\$databases = array (
   'default' =>
