@@ -24,8 +24,22 @@ mkdir -p $ACTUAL_DIR
 # Remove build git directory if it already exists.
 rm -rf $ACTUAL_DIR/.git
 
+# create temp dir if doesn't exist
+if [ ! -d "${WEBROOT}/${PROJECT_NAME}/tmp" ]; then
+  echo "Create TMP dir - ${WEBROOT}/${PROJECT_NAME}/tmp"
+  mkdir -p ${WEBROOT}/${PROJECT_NAME}/tmp
+  chmod -R 777 ${WEBROOT}/${PROJECT_NAME}/tmp
+fi
+
 # TODO: Change docroot with variable
 rsync -a --delete $WORKSPACE/docroot/ $ACTUAL_DIR
+
+# create translations dir if doesn't exist
+if [ ! -d "$ACTUAL_DIR/sites/all/translations" ]; then
+  echo "Create translations dir - $ACTUAL_DIR/sites/all/translations"
+  mkdir -p $ACTUAL_DIR/sites/all/translations
+  chmod -R 777 $ACTUAL_DIR/sites/all/translations
+fi
 
 rm -rf $WORKSPACE/*
 rm -rf $WORKSPACE/.[!.]*
